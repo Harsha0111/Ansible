@@ -1,0 +1,54 @@
+//adhoc commands:(used to check the [server/group of servers ] are reachable/not)
+
+//to check whether localhost is reachable/not
+// -m is module 
+ansible localhost -m ping
+
+//-a is used to send raw commands is any line of bash/shell is send to the hosts
+ansible localhost -a "echo 'Hello, World' "
+//o/p: Hello, World
+
+pwd
+mkdir ansible
+cd ansible
+pwd
+vi hosts
+//inside this file add group name in [group_name] and 
+//add some servers to ping(reachable)
+// press " i " button (for insert mode enable to write )
+
+[db]
+192.168.1.4
+192.168.4.4
+
+//to quit press esc button and type -> 
+:wq or :x    (i.e:to save&quit)
+
+ // going to ping those servers by it's group_name
+ //here db in the sense file name in the hosts file we mentioned
+// -i (inventory file i.e, containing ip addresses & host name, which we created by own )
+// ~/ansible/hosts --> it's our path check pwd
+
+ ansible db -m ping -i ~/ansible/hosts
+
+ // if you don't want to create the inventory file for hosts we can use to the default ansible hosts file
+ // the path is /etc/ansible/hosts
+
+ vi  /etc/ansible/hosts
+ // press " i " button (for insert mode enable to write )
+// add the grp name under it add the ip addresses
+# --> command
+
+# Database servers
+[db]
+192.168.1.4
+192.168.4.4
+
+#Application servers
+[app]
+192.168.1.6
+192.168.4.9
+
+#Group 'misc' with 
+//to quit press esc button and type -> 
+:wq or :x    (i.e:to save&quit)
