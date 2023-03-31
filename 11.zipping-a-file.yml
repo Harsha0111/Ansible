@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Zip file
+      archive:
+        path:
+         - /home/ubuntu/file1.txt
+         - /home/ubuntu/file2.txt
+        dest: /home/ubuntu/files.zip
+      format: zip

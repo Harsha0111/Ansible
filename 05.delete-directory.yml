@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+  - name: Delete a Directory
+    file: path=/home/ubuntu/ansible state=absent
