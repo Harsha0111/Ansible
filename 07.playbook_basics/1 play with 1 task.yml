@@ -1,0 +1,6 @@
+---
+- name: "Hello everyone, this a basic_structure playbook"
+  hosts: localhost
+  tasks:
+    - name: "Play with one task"
+      ping: ~

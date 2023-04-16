@@ -1,0 +1,14 @@
+Adhoc pattern:
+
+       ******** plz refer pattern img atteched in yhis folder********** .
+        Patterns are highly flexible - you can exclude or require subsets of hosts,
+         use wildcards or regular expressions, and more. 
+         
+        Ansible executes on all inventory hosts included in the pattern.
+
+example:
+                                    <pattern>
+ansible -m <module_name> webservers:dbservers:&staging:!phoenix -i <Inventory_filename>
+
+targets all machines in the groups ‘webservers’ and ‘dbservers’ that are also in the group ‘staging’, 
+except any machines in the group ‘phoenix’.

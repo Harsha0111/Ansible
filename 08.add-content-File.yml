@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  become: true
-  tasks:
-    - name: Copy content into a file
-      copy: content="some lines are added!!!" dest=/home/ubuntu/file1.txt

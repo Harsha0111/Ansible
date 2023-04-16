@@ -1,0 +1,84 @@
+ ---------------------------------------------------
+ SSH from one VM to another VM:(AWS UBUNTU 22.04):
+ ----------------------------------------------------
+ Login into AWS 
+ Create Instance by Clicking Launch new instance 
+ Enter VM name / after Launching instanceswe can enter, since we need 2 instance by single process
+ Select Ubuntu as OS
+ Select/Create keypair
+ Select Existing/Create New Security Groups
+ Select no.of.Instance we need, and now we need 2 instances
+ Now, click the "LAUNCH INSTANCE" and now it willl be launced successfully
+Then in in Instance page we can enter one instance name as "Ansible master" and another one as "Node"(naming is your wish)
+
+ ----------------------------------------------------
+In Node: (node2)
+ ----------------------------------------------------
+ Login as: ubuntu (default username)
+cd /home/ubuntu
+sudo vi /etc/ssh/sshd_config
+#to search a word : /Password then press enter btn to point the cursor in same place
+#press "i" button for insert mode and change no yes
+PasswordAuthentication no  ---change----> PasswordAuthentication yes
+#press esc button and :wq or :x  (to save changes and quit) 
+#then need to restart sshd immeduatedly to save the changes by following command
+sudo systemctl restart sshd
+-------------------------------------------
+#then creating password for ubuntu (user_name)
+sudo passwd ubuntu
+password:
+Re-enter password:
+will show updated successfully
+------------------------------------------------
+
+
+ ----------------------------------------------------
+In Ansible master : (node 1)
+ ----------------------------------------------------
+Connect through putty or if you click the VM id you can connect through AWS Console itself
+ ----------------------------------------------------
+Type the below command for ssh-key generation:
+ ----------------------------------------------------
+ Commands:
+ssh-keygen  (click enter button)
+
+#Press enter button "3 TIMES CONTINUOUSLy" and it generates an RSA Key
+
+cd .ssh/
+ls
+
+#you can see the below things
+
+authorized_keys   id_rsa  id_rsa.pub
+
+#id_rsa is private key and id_rsa.pub is public key
+#now we can copy this rsa private key manually(non-preferable) or by command(preferable)by following command
+syntax:     ssh-copy-id <Node(node2)user_name>@<Node(node2)private_ip>
+# here ubuntu is my user so,.
+ssh-copy-id ubuntu@<Node(node2)private_ip>
+#now key which we generated is copied to Node(node2), 
+#hereafter we can use the below command whenever you need to ssh without key generating again
+#then it will ask user password and enter below command
+ssh ubuntu@<Node(node2)private_ip>
+#now you will be successfully loggedd into Node(node2) successfully 
+#and you can check the ip also Node(node2) and Ansible master(node1) will be same since after ssh
+#then to exit from ssh , enter below command
+exit
+------------------------------------------------------------------------------
+#you will be back to Ansible master (node1)and can continue below steps
+------------------------------------------------------------------------------
+
+*******************************************************************************************************************
+ANSIBLE INSTALLATION (AWS UBUNTU 22.04) in Ansible master:   (node1) instance
+******************************************************************************************************************
+sudo apt-get update
+sudo -i
+apt-get update
+apt-get install software-properties-common -y
+apt-add-repository ppa:ansible/ansible
+apt-get update
+apt-get install ansible -y
+apt-get update
+ansible --version    #to check ansible is installed/not by viewing it's version
+
+ -------------------------------------------------------------

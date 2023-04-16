@@ -1,0 +1,29 @@
+---
+- name: Look-up is used to search some data via mentioned file name
+  hosts: localhost
+  gather_facts: no
+  vars:
+    data: "{{ lookup('file', './lookup.txt') }}"
+  tasks:
+    # file debug
+    -  debug:
+        msg: "{{ data }}"
+
+    # csv look up
+    #  Match 'Li' on the first column, return the second column 
+    - debug: 
+        msg: "The atomic number of Lithium is {{ lookup('csvfile', 'Li file=lookup.csv delimiter=,') }}"
+
+    # ini look-up
+      # ini(key=value) look-up
+    - debug: 
+        msg: "The user in production is  {{ lookup('ini', 'user section=production file=lookup.ini')  }}"
+    
+    # pipe lookup
+    #  The output of Locally executed Command
+    - debug: 
+        msg: "{{ lookup('pipe', 'hostname') }}"
+
+     # env lookup
+    - debug: 
+        msg: "{{ lookup('env', 'SHELL') }}"

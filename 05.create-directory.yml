@@ -1,7 +1,0 @@
----
-- name: Create a directory
-  hosts: localhost
-  become: true
-  tasks:
-  - name: Creation of dir
-    file: path=/home/ubuntu/ansible state=directory mode=755 owner=root

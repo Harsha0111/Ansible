@@ -1,0 +1,39 @@
+Ansible runs handlers at the end of each play. 
+If a task notifies a handler but another task fails later in the play, 
+by default the handler does not run on that host, which may leave the host in an unexpected state. 
+
+For example, a task could update a configuration file and notify a handler to restart some service. 
+If a task later in the same play fails, the configuration file might be changed
+ but the service will not be restarted.
+
+You can change this behavior with the --force-handlers command-line option, by including force_handlers: 
+True in a play, or by adding force_handlers = True to ansible.cfg. 
+When handlers are forced, Ansible will run all notified handlers on all hosts,
+ even hosts with failed tasks. 
+ (Note that certain errors could still prevent the handler from running, 
+ such as a host becoming unreachable.)
+
+
+---
+- name: "handlers"
+  hosts: grp_name
+  force_handlers: yes
+  tasks:
+    - name: "ignore error to proceed next task since the execution will stop if error occurs"
+      apt:
+        name: wrong_pkg
+        state: present
+      ignore_errors: yes
+
+    - debug:
+      msg: "Calling Handler"
+    changed_when: true
+    notify: call_handler
+
+  handlers:
+    - name: call_handler
+      debug:
+        msg: "Called Handler!!"
+
+
+  

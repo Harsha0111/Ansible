@@ -1,0 +1,27 @@
+---
+- name: vars
+  hosts: all
+  gather_facts: false
+  #  vars_files `is to include variable files to current playbook
+  vars_files:
+    - extra.yml
+  tasks:
+  - name: a task
+    debug:
+       msg: "I am a {{ sample1 }}"
+
+  - include_vars:
+      extra.yml
+  - debug:
+      msg="Hello, {{ sample2 }}!"
+  
+    
+# play 2 task include
+---
+- hosts: all
+  tasks:
+    - include_tasks: task.yml
+
+# play 3 play include
+---
+- import_playbook: play.yml

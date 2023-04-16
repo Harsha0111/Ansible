@@ -1,0 +1,13 @@
+---
+- name: Executing this task in include_main.yml file task via include module!!
+  hosts: all
+  tasks:
+  - name: Play sample
+    debug:
+      msg: "Hello, I am a separate task, executing in include_main.yml"
+     notify: task_include
+
+    
+    # notify is to call handler
+    
+

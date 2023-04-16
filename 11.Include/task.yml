@@ -1,0 +1,4 @@
+---
+  - name: Executing this play in include_main.yml file's play via include module!!
+    debug:
+      msg: "Hello, I am a separate play, executing in include_main.yml"

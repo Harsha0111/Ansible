@@ -1,0 +1,65 @@
+Ansible Delegate_to module helps us to execute a specific task in 
+our playbook to run in other host or machine.
+
+This process of handing over the control of execution to another host (or) executing a task in another machine is 
+called as delegation and  
+the module delegate_to helps you to configure it properly and achieve the desired result.
+
+
+you can see there is a delegate_to used to change the control of execution back to the
+" ansible master from the remote host" where the task was supposed to run.
+
+this is a simple delegation where the control of execution transferred from remote host to the master.
+---
+- name: Delegate to / local_action
+  hosts: private
+  tasks:
+    - name: Get hostname of remote machine mentioned in hosts
+     command: hostname
+     register: remote_host
+
+    - name: Print hostname of remote machine mentioned in hosts
+      debug:
+        msg: Remote Machine hostname is {{ remote_host.stdout }}
+
+  # delegate to is used here since from ansible_master we send task to remote machine and 
+  # we send result to our master(localmachine)
+
+    - name: Print output via localhost
+     command: hostname
+     delegate_to: localhost
+     register: local_host
+
+  
+  #  alter to delegate to is local action it's only for localmachine
+    - name: Print output via localhost
+      local_action: command hostname
+      register: local_host
+      
+
+    - name: Get hostname of remote machine mentioned in hosts
+      debug:
+        msg: Remote macine task output is from {{ local_host.stdout }}    
+
+
+
+
+  tasks:
+    - name: Get hostname of remote machine mentioned in hosts
+      command: hostname
+      register: remote_host
+
+    - name: Print hostname of remote machine mentioned in hosts
+      debug:
+        msg: Remote Machine hostname is {{ remote_host.stdout }}
+
+
+    - name: Print Remote host's output via localhost
+      command: hostname
+      delegate_to: localhost
+      register: local_host
+
+    - name: Get hostname of remote machine mention via localhost
+      debug:
+        msg: Remote macine task output is via  {{ local_host.stdout }}
+                                               

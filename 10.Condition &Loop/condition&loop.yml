@@ -1,0 +1,33 @@
+---
+- name: Condition and loop
+  hosts: localhost
+  tasks:
+    - name: Condition is that when it's true then only the tasks will run or else it will not run
+      loop:
+        - h1
+        - h2
+      debug:
+        msg: "{{item}}" 
+      when: true
+
+- name: Condition and with_items
+  hosts: localhost
+  tasks:
+    - name: Condition is that when it's true then only the tasks will run or else it will not run
+      with_items:
+        - hi
+        - hello
+      debug:
+        msg: "{{item}}"
+      when: true
+
+- name: Condition and false condition
+  hosts: localhost
+  tasks:
+    - name: Here condition is false
+      with_items:
+        - hi
+        - false
+      debug:
+        msg: "{{item}}"
+      when: false

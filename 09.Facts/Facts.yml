@@ -1,0 +1,27 @@
+---
+- name: Facts 
+  hosts: all
+  tasks:
+  - name: Debug the facts
+    debug:
+      var: ansible_facts
+
+- name: Facts 
+  hosts: all
+  tasks:
+  - name: setup module
+    setup:
+      filter: ansible_user*
+    register: _host_facts
+
+  - name: display _host_facts
+    debug:
+      var: _host_facts
+
+- name: Facts 
+  gather_facts: no
+  hosts: all
+  tasks:
+  - name: Debug the facts
+    debug:
+      var: ansible_facts

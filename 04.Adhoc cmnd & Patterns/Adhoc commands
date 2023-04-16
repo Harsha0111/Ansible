@@ -1,0 +1,26 @@
+What is Ad-hoc command:
+  * Ad hoc commands are commands which can be run individually to perform quick functions, instead of writing playbook.
+
+  * These ad-hoc commands are not used for configuration management and deployment because 
+   commands are "one-time usage". 
+
+  *  It's a "COMMAND-LINE"tool for Ansible. 
+
+  * The command module is used to run simple Linux commands on a remote node or server,
+   which is a part of the host group or standalone server mentioned in the host group i.e., Inventory file/ default hosts file.
+
+  * syntax: ansible -m <module_name> -i <Inventory_filename> <host group or standalone server>
+        eg: $ ansible -m ping -i hosts grp1  
+        used to check the remote machine server reachability
+
+
+   For example, used to run any commands or run any scripts in the remote target machine.
+    Or used to execute commands on a remote node.
+
+    ad hoc commands are great for tasks you repeat rarely. 
+    For example, if you want to power off all the machines in your lab for Christmas vacation, you could execute a quick one-liner in Ansible without writing a playbook. An ad hoc command looks like this:
+
+        $ ansible [pattern] -m [module] -a "[module options]"
+
+        -a "[module options]" --> it's argument for module we can pass some linux cmnds, key=value
+        

@@ -1,0 +1,18 @@
+Ansible:
+        **********Scenario**********
+        If you have 1 server/system  you can easily execute some set of commands "REPEATEDLY", suppose 
+        10 or 100 or "n" no.of. servers? What will you do, it will be very tedious task and time waste process.
+
+        **********Solution**********
+        "-----That's why ANSIBLE CAME------------"
+        Ansible is a  "POWERFUL AUTOMATION TOOL" can automate the above mentioned tedious tasks as "SIMPLE"
+
+        **********Advantages**********          
+        Agentless --> means we "NO NEED TO INSTALL ANY TOOLS/AGENT" on NODE/REMOTE machine to connect with ansible master 
+        Open-source  --> free of cost
+
+        You can connect to remote machine by Ansible master through "SSH" and after connecting to remote machine by Ansible master
+        we can install apps anything as your normal machine.
+      
+        Ansible --used for----> REPEATABLE TASKS --in a----> REPEATABLE WAY
+        (Install)---------------(Automate Tasks)-------------(Repeat it)

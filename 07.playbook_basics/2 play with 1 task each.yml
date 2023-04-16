@@ -1,0 +1,21 @@
+---
+- name: "Hi, this is one play with one task with Global variable"
+  hosts: localhost
+  vars:
+    greetings: Hello, this is Global variable for this play level alone!
+  tasks:
+  - name: Ansible Simple Variable Example Usage for "THIS PLAY FOR ALL TASKS IN THIS PLAY ALONE"
+    debug:
+      msg: "{{ greetings }}"
+
+- name: "Hi"
+  hosts: localhost
+  tasks:
+  - name: Ansible Simple Variable Example Usage for "THIS TASK LEVEL ALONE"
+    vars:
+      var1: task variable
+    debug:
+      msg: "{{ var1 }}"
+  
+
+      

@@ -1,0 +1,81 @@
+Hosts file defines hosts and group of hosts with their corresponding private/public ip address 
+can be used in Playbook(tasks) and in Ad-hoc commands.
+
+We can add individual ip or group of ip under single "GROUP NAME"
+
+--------------------------------
+RULES FOR ADDING HOSTS
+------------------
+[group_name] -->inside [] only we need to add group_name
+<ip> 
+or
+<name_of_individual_host> ansible_ssh_host=<host_ip> 
+
+Can add the group under another group as children also
+[Common:childern] 
+group_name1
+group_name2
+
+-----------------------------------------------------------
+Default Hosts location in ansible:
+-----------------------------------------------
+sudo vi /etc/ansible/hosts
+#press i (insert mode), add host details
+[group_name] -->inside [] only we need to add group_name
+<ip> 
+or
+<name_of_individual_host> ansible_ssh_host=<host_ip> 
+#press esc button and :wq or :x (save and quit)
+-----------------------
+
+Can Ping it for reachable
+--------
+ansible <group_name/host_name> -m ping 
+
+-----------------------------------------------------------
+
+*************************
+IVENTORY FILE
+************************
+It's known as we are creating our "OWN HOSTS FILE" in our current directory/anywhere, with the same rules as mentioned above
+****************************************
+Commands:
+vi hosts
+[group_name] -->inside [] only we need to add group_name
+<ip> 
+or
+<name_of_individual_host> ansible_ssh_host=<host_ip> 
+#press esc button and :wq or :x (save and quit)
+-----------------------
+
+Can Ping it for reachable for Inventory file note: we need to mention "PATH" is important
+--------
+ansible <group_name/host_name> -m ping -i hosts<name_of_inventoryfile>
+
+
+
+
+
+
+
+
+
+
+
+
+
+If you not yet install ansible so far plz install it by refering previous notes
+Next install Python in Node(node2) machine/instance, by following command
+
+--------------------------
+Python Installing in Node machine
+---------------------------
+Host/Node server:
+Commands:
+**************************
+sudo apt-get update
+sudo -i
+apt-get install python3
+python3 --version
+apt-get update
+************************

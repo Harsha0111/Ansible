@@ -1,0 +1,22 @@
+The default Ansible configuration file is located under 
+              /etc/ansible/ansible.cfg 
+
+for getting this default files, while installing ansible your also install the following cmnd 
+             $  sudo apt-add-repository ppa:ansible/ansible
+
+
+ Most of Ansible's settings can be modified using this configuration file
+  to meet the needs of your environment.
+
+
+ $ vi /etc/ansible/ansible.cfg 
+
+#  inside this file there will be a github repository link reg, config file plz browse it and
+# copy the defaults section 
+
+defaults:
+#inventory_file = /etc/ansible/ansible.cfg 
+if need to change the default inventory file we need to uncommend this line
+and mention your inventory file name
+
+

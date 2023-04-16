@@ -1,7 +1,0 @@
----
-- name: Check server reachability 
-  hosts: localhost
-  tasks:
-  - ping: ~
-
-  

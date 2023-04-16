@@ -1,0 +1,34 @@
+Start:
+  Used to execute a task from mentioned task name 
+  omits the above task from mentioned task name, while executing playbook we need to pass this flag
+
+syntax: 
+  $ ansible-playbook <playbook_name.yml> --start-at-task="task_name"
+
+************************
+Step: 
+    Step will stop on each task and 
+    it will ask the user to perform task by yes/no/continue (continue na it will make yes to remaining all task)
+
+syntax: 
+  $ ansible-playbook <playbook_name.yml> --step
+
+---
+- name: "Hi"
+  hosts: all
+  vars:
+    greetings: Hello, this is Global variable for this play level alone!
+  tasks:
+  - name: One
+    debug:
+      msg: "{{ greetings }}"
+
+  - name: Two
+    vars:
+      var1: task variable
+    debug:
+      msg: "{{ var1 }}"
+
+  in terminal:
+   $ ansible-playbook sample.yml --start-at-task="Two"
+   $ ansible-playbook sample.yml --step

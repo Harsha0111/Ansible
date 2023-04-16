@@ -1,0 +1,9 @@
+---
+- name: Vault file i.e.,Protected file
+  hosts: localhost
+  vars_files:
+    - vault_pass.yml
+  tasks:
+    - name: print password
+      debug:
+        msg: "{{ password }}"

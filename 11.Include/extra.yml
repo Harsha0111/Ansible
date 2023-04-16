@@ -1,0 +1,4 @@
+---
+sample1: helloo, I am vars_files used only in  play level to include variable files
+sample2: hello, I am include_vars used in both play & task level to access to include variable files
+        

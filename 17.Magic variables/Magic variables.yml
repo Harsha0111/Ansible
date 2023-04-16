@@ -1,0 +1,23 @@
+# Ansible offers a set of variables that deserve their own special mention – magic variables. 
+# These are variables that are always set when a playbook is run without them having to be explicitly created. 
+# Their names are always reserved and should not be used for other variables.
+
+# The most commonly used magic variables are hostvars, groups, group_names, and inventory_hostname. 
+# With hostvars, you can access variables defined for any host in the play, at any point in a playbook. 
+# You can access Ansible facts using the hostvars variable too, but only after you have gathered (or cached) facts
+
+---   
+- name: "Magic Varibale"
+  hosts: all
+  tasks:
+    - debug:
+        msg: "Inventory Hostname : {{ inventory_hostname }}"
+
+    - debug:
+        msg: "All Group Names:{{ groups }}"
+    - debug:
+        msg: "Host's Group Name Alone:{{ group_names }}"
+    #  hostvars is related to ansible_facts
+    #  if we set gather_facts: no ,then ansible_facts will be omitted
+    - debug:
+        msg: " All Variables Related to Hosts{{ hostvars }}"

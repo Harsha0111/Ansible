@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  become: true
-  tasks:
-  - name: Delete User
-    user: name=ansible state=absent remove=yes force=yes

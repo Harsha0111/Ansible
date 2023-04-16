@@ -1,0 +1,20 @@
+# task level variable 
+- name: "Hi"
+  hosts: localhost
+  tasks:
+  - name: Ansible Simple Variable Example Usage for "THIS TASK LEVEL ALONE"
+    vars:
+      var1: task variable
+    debug:
+      msg: "{{ var1 }}"
+  # play level variable
+- name: "Hii, this is group of variables"
+  hosts: localhost
+  vars:
+    - user_1: hello
+    - user_2: peter
+    - user_3: sophie
+  tasks:
+    - name: "{{ user_1 }}"
+      debug:
+        msg: "{{user_3 }}"

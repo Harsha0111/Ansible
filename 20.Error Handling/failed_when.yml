@@ -1,0 +1,15 @@
+---
+- name: Failed when
+  hosts: all
+  tasks:
+    - block:
+      - name: Failed when
+        apt:
+          name: wrong_pkg
+        register: output_apt
+        failed_when: "'No package' in output_apt.msg"
+
+      rescue:
+        - name: debug msg
+          debug:
+            msg: "Rescued!!!"

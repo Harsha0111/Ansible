@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  become: true
-  tasks:
-  - name: Create User
-    user: name=ansible password=ansible groups=ansible

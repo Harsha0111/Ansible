@@ -1,0 +1,23 @@
+---
+- hosts: all
+  vars_prompt:
+
+    - name: username
+      prompt: What is your username?
+      default: admin
+      
+    - name: password
+      prompt: What is your password?
+      private: yes
+      confirm: yes
+
+  tasks:
+
+    - name: Print a message
+      debug:
+        msg: 'Logging in as {{ password , username }}'
+
+
+  What is prompt in Ansible?
+Leave a Comment / General, scripting, tech. Sometimes,
+ it gets essential to prompt the user to confirm if the user is okay with the operations of the playbook.
