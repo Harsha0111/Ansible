@@ -1,0 +1,18 @@
+- hosts: all
+  vars:
+  #  -(hypen)is to remove \n at end of the lines in var1 & var2
+    var1: |-
+      hi hello
+      secondly I am LITERAL BLOCK SCALAR!!
+      same as mentioned 3 lines format***
+    var2: >-
+      initially
+      in addition I am FOLDER BLOCK SCALAR!!
+      Single line!!!!!
+  tasks:
+    - name: Print var1
+      debug:
+        msg: "{{ var1.split('\n') }}"
+    - name: Print var2
+      debug:
+        var: var2

@@ -1,0 +1,15 @@
+    
+- name: Difference b/w Inventory & Ansible Hostname
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Inventory Hostname
+      debug:
+        var: inventory_hostname
+    - name: Ansible Hostname
+      debug:
+        var: ansible_hostname
+
+    - name: Ansible Fqdn(full qualified domain name)
+      debug:
+        var: ansible_fqdn

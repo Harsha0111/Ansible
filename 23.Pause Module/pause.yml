@@ -1,0 +1,13 @@
+- name: Pause Module
+  hosts: all
+  vars:
+    wait_seconds: 10
+  tasks:
+    - pause:
+        seconds: "{{ wait_seconds }}"
+    - debug:
+        msg: "The End*****"
+
+
+  # pause parameters: minutes
+                     seconds

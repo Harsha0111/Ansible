@@ -1,0 +1,17 @@
+- name: Extra-vars
+  hosts: all
+  vars:
+    key: 'value'
+  tasks:
+    - name: Message Paramater used to print customized msg / value of variable
+      debug:
+        msg: "The value of key is: {{ key }}"
+    - name: Variable Paramater will print as key : value pair
+      debug:
+        var: key
+    - name: Verbosity Paramater will print extra details about config file (range 0-3)
+      debug:
+        verbosity: 2
+
+    # while execting playbook as I mentioned range is 2 so -vv
+    $ ansible-playbook <playbook_name.yml> -vv

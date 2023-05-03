@@ -1,0 +1,12 @@
+- name: Extra-vars
+  hosts: all
+  vars:
+    name: 'dummy'
+  tasks:
+    - debug:
+        var: name
+
+ # while execting playbook 
+  $ ansible-playbook <playbook_name.yml> --extra-vars "name=harsha"
+
+  so , name=dummy will be replaced as harsha, since command line arguments has first oder preference
