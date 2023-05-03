@@ -4,10 +4,9 @@
    gather_facts: false
 
    tasks:
-     - block:
         - name: List home directory content
           command: "ls -l /tmp/does-not-exist"
-        # above task will fail since below task will not continue 
+        # above task will fail since below task will not execute further 
         - name: This will execute always
           debug:
             msg: "I will execute even in failure scenario"

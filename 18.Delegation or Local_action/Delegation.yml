@@ -9,7 +9,9 @@ the module delegate_to helps you to configure it properly and achieve the desire
 you can see there is a delegate_to used to change the control of execution back to the
 " ansible master from the remote host" where the task was supposed to run.
 
-this is a simple delegation where the control of execution transferred from remote host to the master.
+this is a simple delegation where the control of execution transferred from remote host to the ansible master.
+
+
 ---
 - name: Delegate to / local_action
   hosts: private
@@ -20,7 +22,7 @@ this is a simple delegation where the control of execution transferred from remo
 
     - name: Print hostname of remote machine mentioned in hosts
       debug:
-        msg: Remote Machine hostname is {{ remote_host.stdout }}
+        msg: "Remote Machine hostname is {{ remote_host.stdout }}"
 
   # delegate to is used here since from ansible_master we send task to remote machine and 
   # we send result to our master(localmachine)
@@ -30,6 +32,7 @@ this is a simple delegation where the control of execution transferred from remo
      delegate_to: localhost
      register: local_host
 
+*******************************************ALTER FOR LOCAL HOST DELEGATION****************
   
   #  alter to delegate to is local action it's only for localmachine
     - name: Print output via localhost
@@ -37,29 +40,7 @@ this is a simple delegation where the control of execution transferred from remo
       register: local_host
       
 
-    - name: Get hostname of remote machine mentioned in hosts
+    - name: Get localhost ip via  remote machine host
       debug:
-        msg: Remote macine task output is from {{ local_host.stdout }}    
-
-
-
-
-  tasks:
-    - name: Get hostname of remote machine mentioned in hosts
-      command: hostname
-      register: remote_host
-
-    - name: Print hostname of remote machine mentioned in hosts
-      debug:
-        msg: Remote Machine hostname is {{ remote_host.stdout }}
-
-
-    - name: Print Remote host's output via localhost
-      command: hostname
-      delegate_to: localhost
-      register: local_host
-
-    - name: Get hostname of remote machine mention via localhost
-      debug:
-        msg: Remote macine task output is via  {{ local_host.stdout }}
+        msg: "Local Host ip is: {{ local_host.stdout }} "   
                                                
