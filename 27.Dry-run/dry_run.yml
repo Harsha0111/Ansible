@@ -1,0 +1,7 @@
+- name: Dry-run
+  hosts: all
+  tasks:
+    - name: Create an empty file
+      file:
+        path: "/home/ubuntu/dry_run.txt"
+        state: touch 

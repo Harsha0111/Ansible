@@ -4,7 +4,7 @@ by default the handler does not run on that host, which may leave the host in an
 
 For example, a task could update a configuration file and notify a handler to restart some service. 
 If a task later in the same play fails, the configuration file might be changed
- but the service will not be restarted.
+ but handler portion's service will not be restarted.
 
 You can change this behavior with the --force-handlers command-line option, by including force_handlers: 
 True in a play, or by adding force_handlers = True to ansible.cfg. 
@@ -15,9 +15,9 @@ When handlers are forced, Ansible will run all notified handlers on all hosts,
 
 
 ---
-- name: "handlers"
+- name: "handlers"  
   hosts: grp_name
-  force_handlers: yes
+  force_handlers: true
   tasks:
     - name: "ignore error to proceed next task since the execution will stop if error occurs"
       apt:
@@ -26,9 +26,9 @@ When handlers are forced, Ansible will run all notified handlers on all hosts,
       ignore_errors: yes
 
     - debug:
-      msg: "Calling Handler"
-    changed_when: true
-    notify: call_handler
+        msg: "Calling Handler"
+      changed_when: true
+      notify: call_handler
 
   handlers:
     - name: call_handler

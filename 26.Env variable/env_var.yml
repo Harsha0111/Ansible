@@ -1,0 +1,12 @@
+- name: Env_var
+  hosts: all
+  environment:
+    sample: hello  
+  tasks:
+    - name: Access play level env_var
+      command: "echo $sample"
+
+    - name: Access task level env_var overrides play level env_var
+      environment:
+        sample: welcome!! 
+      command: "echo $sample"

@@ -1,0 +1,26 @@
+- name: Select-attribute 
+  hosts: localhost
+  tasks:
+    - name: all environment variables
+      debug:
+        var: 'ansible_facts.env'
+       
+    - name: filter enabled
+      debug:
+        msg: "{{ (ansible_facts.env | dict2items | selectattr('key', 'match', 'SHELL') ) | list }}"
+ # dict2items filter – Convert a dictionary into an itemized list of dictionaries 
+
+- name: Reject-attribute
+  hosts: all 
+  gather_facts: false
+  vars:
+    medicines:
+      - { name: one, type: rose }
+      - { name: two, type: lily }
+      - { name: three, type: jasmine }
+
+  tasks:
+       
+    - name: filter all medicines other than suppositories
+      debug:
+        msg: "{{ (medicines | rejectattr('type', 'match', 'lily') ) | list }}"

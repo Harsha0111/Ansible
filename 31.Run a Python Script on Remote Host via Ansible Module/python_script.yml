@@ -1,0 +1,23 @@
+---
+- name: run Python script
+  hosts: all
+  tasks:
+    - name: run cars.py script
+      script:
+        executable: python3
+        cmd: cars.py
+      register: cars_raw_output
+
+    - name: print cars_raw_output
+      debug:
+        var: cars_raw_output
+        verbosity: 1
+        # while running playbook mention -vv verbosity level
+
+    - name: convert output to JSON
+      set_fact:
+        cars_list: "{{ cars_raw_output.stdout | from_json }}"
+    
+    - name: print cars_list
+      debug:
+        var: cars_list
