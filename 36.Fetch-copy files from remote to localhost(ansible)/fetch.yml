@@ -3,10 +3,10 @@
   hosts: all
   become: true
   vars:
-    log_file: "/var/log/messages"
-    dump_dir: "logs"
+    file: "fetch.txt"
+    dump_dir: "download"
   tasks:
-    - name: fetch log
+    - name: fetch remote file to ansible master
       fetch:
-        src: "{{ log_file }}"
+        src: "{{ file }}"
         dest: "{{ dump_dir }}"

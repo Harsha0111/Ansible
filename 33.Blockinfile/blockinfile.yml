@@ -10,3 +10,4 @@
       dest: /etc/hosts
       content: |
         192.168.0.200 demo demo.example.com
+        192.45.35.13 samplee
