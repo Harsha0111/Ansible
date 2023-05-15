@@ -7,6 +7,6 @@
     dump_dir: "logs"
   tasks:
     - name: fetch log
-       fetch:
+      fetch:
         src: "{{ log_file }}"
         dest: "{{ dump_dir }}"

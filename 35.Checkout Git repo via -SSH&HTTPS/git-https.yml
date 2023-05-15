@@ -1,14 +1,14 @@
 ---
 - name: git module demo
-  hosts: all
+  hosts: localhost
   tasks:
     - name: ensure git pkg installed
-      ansible.builtin.yum:
+      apt:
         name: git
         state: present
       become: true
 
-    - name: checkout git repo
-      ansible.builtin.git:
+    - name: checkout git repo via https
+      git:
         repo: https://github.com/Harsha0111/Ansible.git
         dest: /home/ubuntu/https
