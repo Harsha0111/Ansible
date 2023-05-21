@@ -1,6 +1,6 @@
 ---
 - name: git module demo
-  hosts: all
+  hosts: localhost
   vars:
     repo: "git@github.com:Harsha0111/Ansible.git"
     dest: "/home/ubuntu/ssh-git"
