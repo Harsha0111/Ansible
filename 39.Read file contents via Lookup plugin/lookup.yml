@@ -1,0 +1,8 @@
+- name: Lookup plugin
+  hosts: localhost
+  vars:
+    content: "{{ lookup('file', 'example.txt')}}"
+  tasks:
+    - name: Read variables from a file via Lookup plugin
+      debug:
+        msg: "The content of file is {{ content }}"

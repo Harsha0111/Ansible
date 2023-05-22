@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+192.4.45.2 sample1
+192.34.2.1 sample2
+
+{% for host in group['all'] %}
+{{ hostvars[host] ['ansible_host'] }} {{ hostvars[host] ['inventory_hostname'] }} 
+{% endfor %}

@@ -1,0 +1,11 @@
+- name: Loop 
+  hosts: all
+  become: yes
+  tasks:
+    - name: Generate /etc/myhosts file
+      template:
+        src: hosts.j2
+        dest: /etc/myhosts
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'

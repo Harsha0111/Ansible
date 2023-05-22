@@ -1,0 +1,12 @@
+- name: Slrup
+  hosts: all
+  vars:
+    remotefile: "/proc/cpuinfo"
+  tasks:
+    - name: Slurp remote file
+      slurp:
+        src: "{{ remotefile }}"
+      register: slurpfile
+    - name: Print slurpfile
+      debug:
+        msg: "{{ slurpfile['content'] | b64decode }}"

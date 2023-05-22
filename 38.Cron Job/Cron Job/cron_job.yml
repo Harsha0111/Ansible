@@ -1,0 +1,9 @@
+- name: Cron Job
+  hosts: all
+  tasks:
+    - name: Cron Job
+      cron:
+        name: "Test"
+        minute: "*/1"
+        hour: "*"
+        job: "Hi Welcome All!""

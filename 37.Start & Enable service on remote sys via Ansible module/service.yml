@@ -1,0 +1,15 @@
+- name: Service_facts & Service module
+  hosts: all
+  become: true
+  tasks:
+    - name: Service_facts
+      service_facts:
+
+    - name: Printing Service_facts
+      debug:
+        var: ansible_facts.services
+    - name: Service module
+      service:
+        name: ufw
+        enabled: true
+        state: started
